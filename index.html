@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos Digitales y Computacionales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --accent-color: #e74c3c;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f5f7fa;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Course Info Section */
+        .course-info {
+            padding: 4rem 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark-color);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+        }
+
+        .course-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .overview-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .overview-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .overview-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .overview-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        /* Modules Section */
+        .modules {
+            padding: 4rem 0;
+            background-color: #f5f7fa;
+        }
+
+        .module-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .tab-button {
+            background-color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 5px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .tab-button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .tab-button:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .module-content {
+            display: none;
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.5s;
+        }
+
+        .module-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .module-content h3 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .module-content h3 i {
+            margin-right: 15px;
+            color: var(--primary-color);
+        }
+
+        .module-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .module-content ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .module-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .reflection-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .reflection-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-title {
+            font-size: 1.3rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .quiz-container h4 {
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .quiz-container h4 i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+        }
+
+        .question p {
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .options label:hover {
+            background-color: #e9ecef;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .feedback {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+
+        .quiz-result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+
+        .quiz-result.pass {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+        .quiz-result.fail {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+
+        /* Conclusion Section */
+        .conclusion {
+            padding: 4rem 0;
+            background-color: white;
+        }
+
+        .conclusion-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .conclusion-content h3 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .conclusion-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .motivational-quote {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .motivational-quote:before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            opacity: 0.3;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-column p, .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .module-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-button {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-code"></i>
+                <span>Fundamentos Digitales</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#course-info">Información</a></li>
+                    <li><a href="#modules">Módulos</a></li>
+                    <li><a href="#conclusion">Conclusión</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Fundamentos Digitales y Computacionales</h1>
+            <p>Para Estudiantes y Docentes</p>
+            <a href="#course-info" class="btn">Conoce más</a>
+        </div>
+    </section>
+
+    <!-- Course Info Section -->
+    <section id="course-info" class="course-info">
+        <div class="container">
+            <div class="section-title">
+                <h2>Información del Curso</h2>
+            </div>
+            
+            <div class="course-overview">
+                <div class="overview-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Objetivo General</h3>
+                    <p>Introducir a los participantes en conceptos básicos de informática, programación y uso de herramientas digitales que potencien la enseñanza y el aprendizaje.</p>
+                </div>
+                
+                <div class="overview-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Público Meta</h3>
+                    <p>Estudiantes de nivel medio y superior, docentes que buscan fortalecer sus competencias digitales, profesionales en formación y cualquier persona interesada en desarrollar competencias digitales.</p>
+                </div>
+                
+                <div class="overview-card">
+                    <i class="fas fa-tasks"></i>
+                    <h3>Objetivos Específicos</h3>
+                    <ul>
+                        <li>Comprender el potencial educativo de Scratch</li>
+                        <li>Diseñar un blog educativo con Google Sites</li>
+                        <li>Aplicar principios de ciberseguridad</li>
+                        <li>Conocer HTML y CSS para desarrollo web</li>
+                        <li>Aprender a estructurar algoritmos con PSeInt</li>
+                        <li>Identificar componentes de una computadora</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section id="modules" class="modules">
+        <div class="container">
+            <div class="section-title">
+                <h2>Módulos del Curso</h2>
+            </div>
+            
+            <div class="module-tabs">
+                <button class="tab-button active" onclick="openModule(event, 'module1')">Módulo 1</button>
+                <button class="tab-button" onclick="openModule(event, 'module2')">Módulo 2</button>
+                <button class="tab-button" onclick="openModule(event, 'module3')">Módulo 3</button>
+                <button class="tab-button" onclick="openModule(event, 'module4')">Módulo 4</button>
+                <button class="tab-button" onclick="openModule(event, 'module5')">Módulo 5</button>
+                <button class="tab-button" onclick="openModule(event, 'module6')">Módulo 6</button>
+            </div>
+            
+            <div id="module1" class="module-content active">
+                <h3><i class="fas fa-puzzle-piece"></i> Módulo 1: Introducción a Scratch para adolescentes</h3>
+                <p><strong>Explicación detallada:</strong> Scratch es un entorno de programación visual desarrollado por el MIT en 2007. Su objetivo es permitir a niños y jóvenes aprender conceptos de programación de manera divertida y sencilla, sin necesidad de escribir código.</p>
+                
+                <h4 class="video-title">Videos explicativos sobre Scratch</h4>
+                
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/eOFG9dzV1dQ" title="Introducción a Scratch" allowfullscreen></iframe>
+                </div>
+                
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/Apfp3WtbvPg" title="Creando proyectos en Scratch" allowfullscreen></iframe>
+                </div>
+                
+                <h4>Ventajas de usar Scratch</h4>
+                <ul>
+                    <li>Favorece el pensamiento lógico y algorítmico.</li>
+                    <li>Estimula la creatividad y la innovación.</li>
+                    <li>Promueve el aprendizaje colaborativo gracias a su comunidad en línea.</li>
+                    <li>Es gratuito y multiplataforma.</li>
+                </ul>
+                
+                <h4>Ejemplo de actividades en Scratch</h4>
+                <ul>
+                    <li>Animar un personaje que cuente una historia.</li>
+                    <li>Diseñar un cuestionario interactivo.</li>
+                    <li>Crear un minijuego de plataformas.</li>
+                </ul>
+                
+                <h4>Aplicaciones en educación</h4>
+                <ul>
+                    <li>Enseñar conceptos de matemáticas, física o idiomas de forma visual.</li>
+                    <li>Desarrollar proyectos multidisciplinarios.</li>
+                    <li>Promover la gamificación en las clases.</li>
+                </ul>
+                
+                <div class="reflection-box">
+                    <h4>Reflexión</h4>
+                    <p>Si tuvieras que enseñar Scratch a un compañero, ¿cómo le explicarías en tus palabras para qué sirve?</p>
+                </div>
+                
+                <!-- Quiz for Module 1 -->
+                <div class="quiz-container">
+                    <h4><i class="fas fa-question-circle"></i> Cuestionario del Módulo 1</h4>
+                    
+                    <div class="question">
+                        <p>1. ¿Qué es Scratch?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1m1" value="a"> a. Un lenguaje de programación de texto</label>
+                            <label><input type="radio" name="q1m1" value="b"> b. Un entorno de programación visual</label>
+                            <label><input type="radio" name="q1m1" value="c"> c. Un sistema operativo</label>
+                        </div>
+                        <div class="feedback" id="feedback1m1"></div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>2. ¿Cuál es una ventaja de usar Scratch en educación?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2m1" value="a"> a. Requiere conocimientos avanzados de programación</label>
+                            <label><input type="radio" name="q2m1" value="b"> b. Favorece el pensamiento lógico y algorítmico</label>
+                            <label><input type="radio" name="q2m1" value="c"> c. Es de pago</label>
+                        </div>
+                        <div class="feedback" id="feedback2m1"></div>
+                    </div>
+                    
+                    <button class="btn" onclick="checkQuiz('m1', 2)">Verificar respuestas</button>
+                    <div class="quiz-result" id="resultm1"></div>
+                </div>
+            </div>
+            
+            <div id="module2" class="module-content">
+                <h3><i class="fas fa-blog"></i> Módulo 2: Cómo crear un blog educativo con Google Sites</h3>
+                <p><strong>Explicación detallada:</strong> Google Sites es una herramienta gratuita de Google que permite diseñar páginas web en pocos pasos. Es especialmente útil en educación porque no requiere conocimientos técnicos.</p>
+                
+                <h4 class="video-title">Video tutorial de Google Sites</h4>
+                
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/ZlcV6MQXd5A" title="Cómo crear un blog educativo con Google Sites" allowfullscreen></iframe>
+                </div>
+                
+                <h4>Características principales</h4>
+                <ul>
+                    <li>Interfaz intuitiva de arrastrar y soltar.</li>
+                    <li>Integración con Google Drive (Docs, Sheets, Slides, Forms).</li>
+                    <li>Diseño adaptable a móviles y computadoras.</li>
+                    <li>Posibilidad de trabajar colaborativamente.</li>
+                </ul>
+                
+                <h4>Usos de Google Sites en educación</h4>
+                <ul>
+                    <li>Creación de portafolios digitales de estudiantes.</li>
+                    <li>Espacios de clase virtual donde se alojan tareas y recursos.</li>
+                    <li>Blogs de investigación o difusión de proyectos escolares.</li>
+                    <li>Página de comunicación entre docente y padres de familia.</li>
+                </ul>
+                
+                <h4>Ejemplo práctico</h4>
+                <p>Un docente de historia puede crear un sitio donde los estudiantes publiquen artículos sobre personajes históricos, incluyendo imágenes, líneas de tiempo interactivas y videos explicativos.</p>
+                
+                <div class="reflection-box">
+                    <h4>Reflexión</h4>
+                    <p>¿Qué ventajas tendría para ti usar un blog en lugar de cuadernos físicos para mostrar tus tareas o proyectos?</p>
+                </div>
+                
+                <!-- Quiz for Module 2 -->
+                <div class="quiz-container">
+                    <h4><i class="fas fa-question-circle"></i> Cuestionario del Módulo 2</h4>
+                    
+                    <div class="question">
+                        <p>1. ¿Qué es Google Sites?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1m2" value="a"> a. Un procesador de textos</label>
+                            <label><input type="radio" name="q1m2" value="b"> b. Una herramienta para crear sitios web</label>
+                            <label><input type="radio" name="q1m2" value="c"> c. Un servicio de correo electrónico</label>
+                        </div>
+                        <div class="feedback" id="feedback1m2"></div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>2. ¿Cuál es una característica de Google Sites?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2m2" value="a"> a. Requiere conocimientos de programación</label>
+                            <label><input type="radio" name="q2m2" value="b"> b. Tiene una interfaz de arrastrar y soltar</label>
+                            <label><input type="radio" name="q2m2" value="c"> c. No es compatible con dispositivos móviles</label>
+                        </div>
+                        <div class="feedback" id="feedback2m2"></div>
+                    </div>
+                    
+                    <button class="btn" onclick="checkQuiz('m2', 2)">Verificar respuestas</button>
+                    <div class="quiz-result" id="resultm2"></div>
+                </div>
+            </div>
+            
+            <div id="module3" class="module-content">
+                <h3><i class="fas fa-shield-alt"></i> Módulo 3: Introducción a la ciberseguridad para docentes</h3>
+                <p><strong>Explicación detallada:</strong> En la actualidad, los docentes trabajan constantemente en entornos digitales: correo electrónico, plataformas educativas, grupos en redes sociales, etc. Esto los hace vulnerables a ataques informáticos.</p>
+                
+                <h4 class="video-title">Video sobre ciberseguridad</h4>
+                
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/inWWhr5tnEA" title="Conceptos básicos de ciberseguridad" allowfullscreen></iframe>
+                </div>
+                
+                <h4>Amenazas comunes en educación</h4>
+                <ul>
+                    <li><strong>Phishing:</strong> mensajes que intentan engañar al usuario para robar datos.</li>
+                    <li><strong>Malware:</strong> virus, troyanos o spyware que dañan la computadora.</li>
+                    <li><strong>Robo de información:</strong> acceso no autorizado a cuentas de correo o plataformas educativas.</li>
+                    <li><strong>Suplantación de identidad:</strong> uso de nombres de docentes para difundir información falsa.</li>
+                </ul>
+                
+                <h4>Buenas prácticas para docentes</h4>
+                <ul>
+                    <li>Usar contraseñas largas, únicas y con autenticación en dos pasos.</li>
+                    <li>Evitar el uso de memorias USB desconocidas.</li>
+                    <li>No descargar programas de sitios no oficiales.</li>
+                    <li>Enseñar a los estudiantes hábitos de seguridad digital.</li>
+                </ul>
+                
+                <h4>Ejemplo práctico</h4>
+                <p>Un docente recibe un correo que aparenta ser de Google pidiendo "verificar su cuenta". Al revisar, nota que la dirección no es oficial. Si no tuviera cuidado, podría perder acceso a toda su información.</p>
+                
+                <div class="reflection-box">
+                    <h4>Reflexión</h4>
+                    <p>¿Cuál de los riesgos de ciberseguridad crees que es más común en tu entorno?</p>
+                </div>
+                
+                <!-- Quiz for Module 3 -->
+                <div class="quiz-container">
+                    <h4><i class="fas fa-question-circle"></i> Cuestionario del Módulo 3</h4>
+                    
+                    <div class="question">
+                        <p>1. ¿Qué es el phishing?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1m3" value="a"> a. Un tipo de malware</label>
+                            <label><input type="radio" name="q1m3" value="b"> b. Mensajes que intentan engañar para robar datos</label>
+                            <label><input type="radio" name="q1m3" value="c"> c. Un método de autenticación</label>
+                        </div>
+                        <div class="feedback" id="feedback1m3"></div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>2. ¿Cuál es una buena práctica de ciberseguridad?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2m3" value="a"> a. Usar la misma contraseña para todos los sitios</label>
+                            <label><input type="radio" name="q2m3" value="b"> b. Usar contraseñas largas y únicas con autenticación en dos pasos</label>
+                            <label><input type="radio" name="q2m3" value="c"> c. Compartir contraseñas con colegas</label>
+                        </div>
+                        <div class="feedback" id="feedback2m3"></div>
+                    </div>
+                    
+                    <button class="btn" onclick="checkQuiz('m3', 2)">Verificar respuestas</button>
+                    <div class="quiz-result" id="resultm3"></div>
+                </div>
+            </div>
+            
+            <div id="module4" class="module-content">
+                <h3><i class="fas fa-code"></i> Módulo 4: Fundamentos básicos de HTML y CSS</h3>
+                <p><strong>Explicación detallada:</strong> El <strong>HTML (HyperText Markup Language)</strong> es el lenguaje que organiza el contenido de las páginas web. Define títulos, párrafos, imágenes, enlaces y tablas. El <strong>CSS (Cascading Style Sheets)</strong> es el lenguaje que define cómo se verá ese contenido: colores, fuentes, tamaños y distribución.</p>
+                
+                <h4 class="video-title">Video tutorial de HTML y CSS</h4>
+                
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/UB1O30fR-EE" title="Introducción a HTML y CSS" allowfullscreen></iframe>
+                </div>
+                
+                <h4>Diferencia entre HTML y CSS</h4>
+                <ul>
+                    <li>HTML = estructura (esqueleto de la web).</li>
+                    <li>CSS = diseño (la "ropa" de la web).</li>
+                </ul>
+                
+                <h4>Ejemplo práctico</h4>
+                <p>Una página HTML puede tener un título en <code>&lt;h1&gt;</code> y un párrafo en <code>&lt;p&gt;</code>. Con CSS, ese título puede mostrarse en rojo y el párrafo en letra cursiva.</p>
+                
+                <h4>Aplicaciones educativas</h4>
+                <ul>
+                    <li>Creación de páginas personales y portafolios.</li>
+                    <li>Desarrollo de sitios web escolares.</li>
+                    <li>Introducción a carreras relacionadas con informática y diseño.</li>
+                </ul>
+                
+                <div class="reflection-box">
+                    <h4>Reflexión</h4>
+                    <p>¿Qué importancia crees que tiene el diseño (CSS) en una página web, además del contenido (HTML)?</p>
+                </div>
+                
+                <!-- Quiz for Module 4 -->
+                <div class="quiz-container">
+                    <h4><i class="fas fa-question-circle"></i> Cuestionario del Módulo 4</h4>
+                    
+                    <div class="question">
+                        <p>1. ¿Para qué se utiliza HTML?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1m4" value="a"> a. Para dar estilo a las páginas web</label>
+                            <label><input type="radio" name="q1m4" value="b"> b. Para organizar el contenido de las páginas web</label>
+                            <label><input type="radio" name="q1m4" value="c"> c. Para programar la lógica de las aplicaciones</label>
+                        </div>
+                        <div class="feedback" id="feedback1m4"></div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>2. ¿Qué función cumple CSS?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2m4" value="a"> a. Define cómo se verá el contenido (colores, fuentes, etc.)</label>
+                            <label><input type="radio" name="q2m4" value="b"> b. Organiza la estructura del contenido</label>
+                            <label><input type="radio" name="q2m4" value="c"> c. Gestiona bases de datos</label>
+                        </div>
+                        <div class="feedback" id="feedback2m4"></div>
+                    </div>
+                    
+                    <button class="btn" onclick="checkQuiz('m4', 2)">Verificar respuestas</button>
+                    <div class="quiz-result" id="resultm4"></div>
+                </div>
+            </div>
+            
+            <div id="module5" class="module-content">
+                <h3><i class="fas fa-project-diagram"></i> Módulo 5: Uso de PSeInt para aprender algoritmos</h3>
+                <p><strong>Explicación detallada:</strong> Antes de aprender un lenguaje de programación como Python o Java, es fundamental entender la lógica de los algoritmos.</p>
+                
+                <h4 class="video-title">Video tutorial de PSeInt</h4>
+                
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/fo7dm08UO4U" title="Uso de PSeInt para aprender algoritmos" allowfullscreen></iframe>
+                </div>
+                
+                <h4>Concepto de algoritmo</h4>
+                <p>Un algoritmo es una serie de pasos que resuelven un problema de manera ordenada.</p>
+                
+                <h4>Ejemplo cotidiano de algoritmo: preparar un sándwich</h4>
+                <ol>
+                    <li>Tomar dos rebanadas de pan.</li>
+                    <li>Untar mantequilla en una.</li>
+                    <li>Colocar jamón y queso.</li>
+                    <li>Tapar con la otra rebanada.</li>
+                    <li>Servir.</li>
+                </ol>
+                
+                <h4>¿Qué es PSeInt?</h4>
+                <p>Es un programa educativo que permite escribir algoritmos en pseudocódigo, similar al lenguaje humano.</p>
+                
+                <h4>Funciones principales de PSeInt</h4>
+                <ul>
+                    <li>Escribir instrucciones paso a paso.</li>
+                    <li>Ejecutar algoritmos en un simulador.</li>
+                    <li>Detectar errores en la lógica.</li>
+                </ul>
+                
+                <h4>Ejemplo en PSeInt</h4>
+                <pre><code>Algoritmo suma
+  Definir a, b, resultado Como Entero
+  Escribir "Ingrese el primer número"
+  Leer a
+  Escribir "Ingrese el segundo número"
+  Leer b
+  resultado ← a + b
+  Escribir "El resultado es ", resultado
+FinAlgoritmo</code></pre>
+                
+                <div class="reflection-box">
+                    <h4>Reflexión</h4>
+                    <p>¿Por qué crees que es útil practicar con pseudocódigo antes de aprender un lenguaje real de programación?</p>
+                </div>
+                
+                <!-- Quiz for Module 5 -->
+                <div class="quiz-container">
+                    <h4><i class="fas fa-question-circle"></i> Cuestionario del Módulo 5</h4>
+                    
+                    <div class="question">
+                        <p>1. ¿Qué es un algoritmo?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1m5" value="a"> a. Un lenguaje de programación</label>
+                            <label><input type="radio" name="q1m5" value="b"> b. Una serie de pasos ordenados para resolver un problema</label>
+                            <label><input type="radio" name="q1m5" value="c"> c. Un tipo de software</label>
+                        </div>
+                        <div class="feedback" id="feedback1m5"></div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>2. ¿Para qué sirve PSeInt?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2m5" value="a"> a. Para crear páginas web</label>
+                            <label><input type="radio" name="q2m5" value="b"> b. Para escribir algoritmos en pseudocódigo</label>
+                            <label><input type="radio" name="q2m5" value="c"> c. Para editar imágenes</label>
+                        </div>
+                        <div class="feedback" id="feedback2m5"></div>
+                    </div>
+                    
+                    <button class="btn" onclick="checkQuiz('m5', 2)">Verificar respuestas</button>
+                    <div class="quiz-result" id="resultm5"></div>
+                </div>
+            </div>
+            
+            <div id="module6" class="module-content">
+                <h3><i class="fas fa-desktop"></i> Módulo 6: Partes de una computadora</h3>
+                <p><strong>Explicación detallada:</strong> Una computadora está compuesta por <strong>hardware</strong> (lo físico) y <strong>software</strong> (los programas).</p>
+                
+                <h4 class="video-title">Video sobre componentes de una computadora</h4>
+                
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/s-FFvTiIlbU" title="Partes de una computadora" allowfullscreen></iframe>
+                </div>
+                
+                <h4>Hardware externo (periféricos)</h4>
+                <ul>
+                    <li><strong>Monitor:</strong> muestra información en pantalla.</li>
+                    <li><strong>Teclado:</strong> permite escribir comandos.</li>
+                    <li><strong>Mouse:</strong> controla el puntero en pantalla.</li>
+                    <li><strong>Impresora y escáner:</strong> comunican lo digital con lo físico.</li>
+                </ul>
+                
+                <h4>Hardware interno</h4>
+                <ul>
+                    <li><strong>Procesador (CPU):</strong> ejecuta instrucciones, el "cerebro" de la máquina.</li>
+                    <li><strong>Memoria RAM:</strong> guarda temporalmente la información en uso.</li>
+                    <li><strong>Disco duro o SSD:</strong> almacenamiento permanente.</li>
+                    <li><strong>Tarjeta madre:</strong> placa principal que conecta todos los componentes.</li>
+                    <li><strong>Fuente de poder:</strong> suministra electricidad.</li>
+                    <li><strong>Tarjetas adicionales:</strong> gráfica, sonido, red.</li>
+                </ul>
+                
+                <h4>Software</h4>
+                <ul>
+                    <li><strong>Sistema operativo:</strong> Windows, Linux, MacOS.</li>
+                    <li><strong>Programas de usuario:</strong> navegadores, suites ofimáticas, juegos.</li>
+                </ul>
+                
+                <h4>Ejemplo práctico</h4>
+                <p>Abrir un gabinete de PC y mostrar con etiquetas los componentes internos.</p>
+                
+                <div class="reflection-box">
+                    <h4>Reflexión</h4>
+                    <p>Si tu computadora no enciende, ¿qué parte sospecharías que está fallando: la fuente de poder, el disco duro o la memoria RAM?</p>
+                </div>
+                
+                <!-- Quiz for Module 6 -->
+                <div class="quiz-container">
+                    <h4><i class="fas fa-question-circle"></i> Cuestionario del Módulo 6</h4>
+                    
+                    <div class="question">
+                        <p>1. ¿Qué es el hardware?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1m6" value="a"> a. Los programas de una computadora</label>
+                            <label><input type="radio" name="q1m6" value="b"> b. Las partes físicas de una computadora</label>
+                            <label><input type="radio" name="q1m6" value="c"> c. El sistema operativo</label>
+                        </div>
+                        <div class="feedback" id="feedback1m6"></div>
+                    </div>
+                    
+                    <div class="question">
+                        <p>2. ¿Cuál es la función del procesador (CPU)?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2m6" value="a"> a. Almacenar información permanentemente</label>
+                            <label><input type="radio" name="q2m6" value="b"> b. Ejecutar instrucciones, el "cerebro" de la máquina</label>
+                            <label><input type="radio" name="q2m6" value="c"> c. Mostrar información en pantalla</label>
+                        </div>
+                        <div class="feedback" id="feedback2m6"></div>
+                    </div>
+                    
+                    <button class="btn" onclick="checkQuiz('m6', 2)">Verificar respuestas</button>
+                    <div class="quiz-result" id="resultm6"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section id="conclusion" class="conclusion">
+        <div class="container">
+            <div class="conclusion-content">
+                <h3>Conclusión del Curso</h3>
+                <p>A lo largo de este curso, los estudiantes conocieron 6 áreas fundamentales: programación básica con Scratch, creación de blogs con Google Sites, principios de ciberseguridad, fundamentos de HTML y CSS, práctica con algoritmos en PSeInt y reconocimiento de los componentes de un computador.</p>
+                
+                <div class="motivational-quote">
+                    "El conocimiento digital no solo te hace competente en la escuela, sino también en la vida profesional. Cada herramienta que aprendas hoy te abrirá nuevas oportunidades mañana"
+                </div>
+                
+                <p>Como actividad final, te invitamos a resolver nuestro cuestionario integrador con 2 preguntas de cada módulo para poner a prueba tus conocimientos.</p>
+                
+                <a href="#" class="btn">Realizar Cuestionario Final</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Fundamentos Digitales</h3>
+                    <p>Un curso MOOC diseñado para estudiantes y docentes que buscan fortalecer sus competencias digitales.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#course-info">Información del Curso</a></li>
+                        <li><a href="#modules">Módulos</a></li>
+                        <li><a href="#conclusion">Conclusión</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@fundamentosdigitales.edu</li>
+                        <li><i class="fas fa-phone"></i> +1 (234) 567-890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Ciudad Universitaria, Edificio TIC</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Fundamentos Digitales y Computacionales. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to open module tabs
+        function openModule(evt, moduleName) {
+            // Hide all module content
+            var moduleContents = document.getElementsByClassName("module-content");
+            for (var i = 0; i < moduleContents.length; i++) {
+                moduleContents[i].classList.remove("active");
+            }
+            
+            // Remove active class from all tab buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            // Show the specific module content
+            document.getElementById(moduleName).classList.add("active");
+            
+            // Add active class to the button that opened the tab
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Quiz answers
+        const quizAnswers = {
+            m1: {
+                q1: 'b',
+                q2: 'b'
+            },
+            m2: {
+                q1: 'b',
+                q2: 'b'
+            },
+            m3: {
+                q1: 'b',
+                q2: 'b'
+            },
+            m4: {
+                q1: 'b',
+                q2: 'a'
+            },
+            m5: {
+                q1: 'b',
+                q2: 'b'
+            },
+            m6: {
+                q1: 'b',
+                q2: 'b'
+            }
+        };
+
+        // Function to check quiz answers
+        function checkQuiz(moduleId, numQuestions) {
+            let correctAnswers = 0;
+            
+            // Check each question
+            for (let i = 1; i <= numQuestions; i++) {
+                const questionName = `q${i}${moduleId}`;
+                const feedbackId = `feedback${i}${moduleId}`;
+                const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                
+                if (selectedOption) {
+                    if (selectedOption.value === quizAnswers[moduleId][`q${i}`]) {
+                        document.getElementById(feedbackId).textContent = "¡Correcto!";
+                        document.getElementById(feedbackId).className = "feedback correct";
+                        correctAnswers++;
+                    } else {
+                        document.getElementById(feedbackId).textContent = "Incorrecto. Intenta de nuevo.";
+                        document.getElementById(feedbackId).className = "feedback incorrect";
+                    }
+                } else {
+                    document.getElementById(feedbackId).textContent = "Por favor, selecciona una respuesta.";
+                    document.getElementById(feedbackId).className = "feedback incorrect";
+                }
+            }
+            
+            // Show result
+            const resultId = `result${moduleId}`;
+            const resultElement = document.getElementById(resultId);
+            
+            if (correctAnswers === numQuestions) {
+                resultElement.textContent = `¡Felicidades! Has respondido correctamente todas las preguntas (${correctAnswers}/${numQuestions}).`;
+                resultElement.className = "quiz-result pass";
+            } else {
+                resultElement.textContent = `Has respondido correctamente ${correctAnswers} de ${numQuestions} preguntas. Revisa las incorrectas e intenta de nuevo.`;
+                resultElement.className = "quiz-result fail";
+            }
+        }
+    </script>
+</body>
+</html>
